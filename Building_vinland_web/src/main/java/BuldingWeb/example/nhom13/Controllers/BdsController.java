@@ -17,13 +17,11 @@ public class BdsController {
     @Autowired
     private BdsService bdsService;
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<bdsDTO>> getAllBds() {
         List<bdsDTO> bdsDTOS = bdsService.getAllBds();
         return ResponseEntity.ok(bdsDTOS);
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/chitiet/{id}")
     public ResponseEntity<?> getBdsById(@PathVariable("id") Integer id) {
         ctbdsDTO dto = bdsService.getBdsById(id);

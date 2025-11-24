@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("${api.prefix}/admin/tintuc")
-@PreAuthorize("hasAnyRole('ADMIN', 'NHANVIEN')")
 public class TinTucController {
     @Autowired
     private TinTucService tinTucService;
