@@ -59,7 +59,7 @@ public class WebSecurityConfig {
                             )
                             .permitAll()
                             .requestMatchers(HttpMethod.GET, String.format("/%s/admin/tintuc/tintucs", apiPrefix)).permitAll()
-
+                            .requestMatchers(HttpMethod.GET, String.format("/%s/admin/tintuc/**", apiPrefix)).permitAll()
                             .requestMatchers(HttpMethod.GET, String.format("/%s/admin/bds", apiPrefix)).permitAll()
                             .requestMatchers(HttpMethod.GET, String.format("/%s/admin/bds/chitiet/**", apiPrefix)).permitAll()
 
@@ -93,7 +93,6 @@ public class WebSecurityConfig {
                             .requestMatchers(HttpMethod.PUT, String.format("/%s/admin/tintuc/duyettin/**", apiPrefix))
                             .hasAnyRole("ADMIN", "NHANVIEN")
 
-                            .requestMatchers(HttpMethod.GET, String.format("/%s/admin/tintuc/*", apiPrefix)).hasAnyRole("ADMIN", "EDITOR")
                             .requestMatchers(HttpMethod.DELETE, String.format("/%s/admin/tintuc/*", apiPrefix)).hasRole("ADMIN")
 
                             .anyRequest().authenticated();

@@ -22,7 +22,6 @@ public class TinTucController {
         return ResponseEntity.ok(list);
     }
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
     public ResponseEntity<TinTucDetailDTO> getPublishedNewsDetail(@PathVariable Integer id) {
         try {
             TinTucDetailDTO detail = tinTucService.getTinTucById(id);

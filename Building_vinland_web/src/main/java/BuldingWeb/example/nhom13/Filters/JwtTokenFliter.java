@@ -77,6 +77,7 @@ public class JwtTokenFliter extends OncePerRequestFilter {
                 Pair.of(String.format("/%s/search", apiPrefix), "GET"),
                 Pair.of(String.format("/%s/admin/bds", apiPrefix), "GET"),
                 Pair.of(String.format("/%s/admin/tintuc/tintucs", apiPrefix), "GET"),
+                Pair.of(String.format("/%s/admin/tintuc/", apiPrefix), "GET"),
                 Pair.of(String.format("/%s/moigioi", apiPrefix), "GET"),
                 Pair.of(String.format("/%s/admin/bds/chitiet", apiPrefix), "GET")
         );
