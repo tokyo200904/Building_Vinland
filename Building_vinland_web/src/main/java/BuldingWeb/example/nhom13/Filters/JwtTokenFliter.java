@@ -84,6 +84,9 @@ public class JwtTokenFliter extends OncePerRequestFilter {
         for(Pair<String, String> bypassToken: bypassTokens) {
             if (servletPath.startsWith(bypassToken.getFirst()) &&
                     request.getMethod().equals(bypassToken.getSecond())) {
+                if (servletPath.contains("/duyettin")) {
+                    return false;
+                }
                 return true;
             }
         }

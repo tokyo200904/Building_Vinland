@@ -41,7 +41,7 @@ public class DangTtController {
     }
 
     @GetMapping("/duyettin/tintucs")
-    @PreAuthorize("hasAnyRole('ADMIN', 'EDITOR')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'NHANVIEN')")
     public ResponseEntity<List<YeuCauTinTucDTO>> getAllTinTuc() {
         List<YeuCauTinTucDTO> list = yeuCauDttService.getAllDuyetTinTuc();
         return ResponseEntity.ok(list);

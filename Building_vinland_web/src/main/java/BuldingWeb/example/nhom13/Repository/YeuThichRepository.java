@@ -16,4 +16,6 @@ public interface YeuThichRepository extends JpaRepository<YeuThich, YeuThichId> 
     boolean existsById(YeuThichId id);
 
     void deleteById(YeuThichId id);
+
+    List<YeuThich> findByBatDongSan_MaBds(Integer maBds);
 }

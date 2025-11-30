@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("${api.prefix}/admin/dangtin")
-public class DangTinController {
+public class  DangTinController {
     @Autowired
     private DangTinService dangTinService;
 

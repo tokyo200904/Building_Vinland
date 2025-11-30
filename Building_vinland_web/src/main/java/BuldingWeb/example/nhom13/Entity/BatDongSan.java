@@ -121,6 +121,6 @@ public class BatDongSan {
     private List<GiaoDich> giaoDichList;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "batDongSan")
+    @OneToMany(mappedBy = "batDongSan" )
     private Set<YeuThich> yeuThichList;
 }

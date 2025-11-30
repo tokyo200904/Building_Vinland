@@ -58,6 +58,7 @@ public class YeuCauDttServiceImpl implements YeuCauDttService {
         }
     }
 
+    @Transactional
     @Override
     public List<YeuCauTinTucDTO> getAllDuyetTinTuc() {
         List<YeuCauDangTinTuc> yeuCaus = yeuCauDangTinTucRepository

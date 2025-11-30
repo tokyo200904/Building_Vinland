@@ -2,10 +2,12 @@ package BuldingWeb.example.nhom13.Service.impl;
 
 import BuldingWeb.example.nhom13.Entity.BatDongSan;
 import BuldingWeb.example.nhom13.Entity.HinhAnh;
+import BuldingWeb.example.nhom13.Entity.YeuThich;
 import BuldingWeb.example.nhom13.Model.Reponse.editbdsReponse;
 import BuldingWeb.example.nhom13.Model.bdsDTO;
 import BuldingWeb.example.nhom13.Model.ctbdsDTO;
 import BuldingWeb.example.nhom13.Repository.BdsRepository;
+import BuldingWeb.example.nhom13.Repository.YeuThichRepository;
 import BuldingWeb.example.nhom13.Service.BdsService;
 import BuldingWeb.example.nhom13.Utils.UploadUtil;
 import org.modelmapper.ModelMapper;
@@ -28,6 +30,9 @@ public class BdsServiceImpl implements BdsService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    private YeuThichRepository yeuThichRepository;
 
     @Override
     public List<bdsDTO> getAllBds() {
@@ -61,8 +66,16 @@ public class BdsServiceImpl implements BdsService {
         return ctbdsDTOs;
     }
 
+    @Transactional
     @Override
     public void deleteBds(int maBds) {
+        BatDongSan bds = bdsRepository.findById(maBds)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy BĐS"));
+
+        List<YeuThich> danhSachYeuThich = yeuThichRepository.findByBatDongSan_MaBds(maBds);
+        if (!danhSachYeuThich.isEmpty()) {
+            yeuThichRepository.deleteAll(danhSachYeuThich);
+        }
         bdsRepository.deleteById(maBds);
     }
 
