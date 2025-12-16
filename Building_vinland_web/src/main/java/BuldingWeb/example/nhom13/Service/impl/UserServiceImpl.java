@@ -99,11 +99,8 @@ public class UserServiceImpl implements UserService {
         if (targatUser.getVaiTro() == VaiTro.ADMIN) {
             throw new AccessDeniedException("Không thể thay đổi vai trò của một Admin khác.");
         }
-        List<VaiTro> adminGroup = List.of(VaiTro.ADMIN, VaiTro.NHANVIEN);
-        List<VaiTro> userGroup = List.of(VaiTro.AGENT, VaiTro.CUSTOMER);
-        if ((adminGroup.contains(targatUser.getVaiTro()) && userGroup.contains(newRole)) ||
-                (userGroup.contains(targatUser.getVaiTro()) && adminGroup.contains(newRole))) {
-            throw new Exception("Không thể chuyển vai trò giữa các nhóm");
+        if (newRole == VaiTro.ADMIN) {
+            throw new AccessDeniedException("Không thể cấp quyền Admin thông qua chức năng này.");
         }
         targatUser.setVaiTro(newRole);
         userReponsitory.save(targatUser);

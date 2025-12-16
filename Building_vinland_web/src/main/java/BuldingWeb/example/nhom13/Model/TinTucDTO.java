@@ -19,4 +19,5 @@ public class TinTucDTO {
     private TrangThaiTinTuc trangThai;
     private String tenNguoiDang;
     private LocalDateTime ngayTao;
+    private Integer luotXem;
 }

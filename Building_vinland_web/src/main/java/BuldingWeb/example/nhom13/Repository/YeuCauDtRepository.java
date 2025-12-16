@@ -13,4 +13,5 @@ public interface YeuCauDtRepository extends JpaRepository<YeuCauDangTin, Integer
 
     List<YeuCauDangTin> findByTrangThaiYeuCau(TrangThaiYeuCau trangThaiYeuCau);
     Optional<YeuCauDangTin> findBymaYeuCauBds(Integer id);
+    Long countByTrangThaiYeuCau(TrangThaiYeuCau trangThaiYeuCau);
 }

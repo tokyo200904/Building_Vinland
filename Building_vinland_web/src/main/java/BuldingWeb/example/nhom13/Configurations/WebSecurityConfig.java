@@ -100,6 +100,10 @@ public class WebSecurityConfig {
 
                             .requestMatchers(HttpMethod.DELETE, String.format("/%s/admin/tintuc/*", apiPrefix)).hasRole("ADMIN")
 
+                            .requestMatchers(HttpMethod.GET, String.format("/%s/admin/dashboard/stats", apiPrefix))
+                            .hasAnyRole("ADMIN", "NHANVIEN")
+
+
                             .anyRequest().authenticated();
 
 

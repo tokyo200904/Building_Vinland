@@ -97,6 +97,7 @@ public class TintucMapper {
                 .trangThai(tinTuc.getTrangThai())
                 .tenNguoiDang(tinTuc.getUser() != null ? tinTuc.getUser().getHoTen() : "N/A")
                 .ngayTao(tinTuc.getNgayTao())
+                .luotXem(tinTuc.getLuotXem())
                 .build();
     }
 
