@@ -1,6 +1,7 @@
 package BuldingWeb.example.nhom13.Mapper;
 
 import BuldingWeb.example.nhom13.Entity.*;
+import BuldingWeb.example.nhom13.Model.AgentListingDTO;
 import BuldingWeb.example.nhom13.Model.Reponse.YeuCauDtReponse;
 import BuldingWeb.example.nhom13.Model.Reponse.chitietYcDtReponse;
 import org.springframework.stereotype.Component;
@@ -55,6 +56,8 @@ public class YeuCauMapper {
         dto.setBaiDoXe(yeuCau.getBaiDoXe());
         dto.setBanCong(yeuCau.getBanCong());
         dto.setThangMay(yeuCau.getThangMay());
+        dto.setLyDoTuChoi(yeuCau.getLoiNhanTuChoi());
+        dto.setTrangThai(yeuCau.getTrangThaiYeuCau());
 
         dto.setAnhChinh(yeuCau.getAnhChinh());
         if (yeuCau.getHinhAnhYeuCauList() !=null && !yeuCau.getHinhAnhYeuCauList().isEmpty()){
@@ -104,5 +107,19 @@ public class YeuCauMapper {
         bds.setNgayTao(yeuCau.getNgayTaoYeuCau());
 
         return bds;
+    }
+
+    public AgentListingDTO toAgentListingDTO(YeuCauDangTin entity) {
+        return AgentListingDTO.builder()
+                .id(entity.getMaYeuCauBds())
+                .tieuDe(entity.getTieuDe())
+                .gia(entity.getGia())
+                .donViTien(entity.getDonViTien())
+                .dienTich(entity.getDienTich())
+                .anhChinh(entity.getAnhChinh())
+                .ngayTao(entity.getNgayTaoYeuCau())
+                .trangThai(entity.getTrangThaiYeuCau())
+                .lyDoTuChoi(entity.getLoiNhanTuChoi())
+                .build();
     }
 }

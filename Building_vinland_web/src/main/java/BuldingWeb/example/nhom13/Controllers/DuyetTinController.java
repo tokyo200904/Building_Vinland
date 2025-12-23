@@ -12,27 +12,28 @@ import java.util.List;
 
 @RestController
 @RequestMapping("${api.prefix}/admin/duyettin")
-@PreAuthorize("hasAnyRole('ADMIN','NHANVIEN')")
 public class DuyetTinController {
     @Autowired
     private YeuCauDtService yeuCauDtService;
 
+    @PreAuthorize("hasAnyRole('ADMIN','NHANVIEN')")
     @GetMapping("/all")
     public ResponseEntity<List<YeuCauDtReponse>> getAllYeuCauDt() {
         List<YeuCauDtReponse> response = yeuCauDtService.getAllYeuCauDt();
         return ResponseEntity.ok(response);
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN','NHANVIEN','AGENT')")
     @GetMapping("/{id}")
     public ResponseEntity<chitietYcDtReponse> getYeuCauDtById(@PathVariable Integer id) {
         try {
             chitietYcDtReponse response = yeuCauDtService.getYeuCauDtById(id);
             return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(null);
         }
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN','NHANVIEN')")
     @PutMapping("/{id}")
     public ResponseEntity<?> DuyetYeuCauDt(@PathVariable Integer id) {
         try {
@@ -42,7 +43,7 @@ public class DuyetTinController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN','NHANVIEN')")
     @PutMapping("/tuchoi/{id}")
     public ResponseEntity<?> TuChoiYeuCauDt(@PathVariable Integer id, @RequestBody String lyDoTuChoi) {
         try {

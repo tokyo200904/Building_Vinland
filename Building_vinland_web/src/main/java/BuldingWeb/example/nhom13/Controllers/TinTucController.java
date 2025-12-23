@@ -1,5 +1,6 @@
 package BuldingWeb.example.nhom13.Controllers;
 
+import BuldingWeb.example.nhom13.Model.AgentNewsDTO;
 import BuldingWeb.example.nhom13.Model.TinTucDTO;
 import BuldingWeb.example.nhom13.Model.TinTucDetailDTO;
 import BuldingWeb.example.nhom13.Service.TinTucService;
@@ -40,4 +41,5 @@ public class TinTucController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
 }

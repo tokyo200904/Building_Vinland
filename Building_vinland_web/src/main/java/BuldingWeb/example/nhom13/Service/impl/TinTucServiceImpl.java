@@ -2,11 +2,14 @@ package BuldingWeb.example.nhom13.Service.impl;
 
 import BuldingWeb.example.nhom13.Entity.TinTuc;
 import BuldingWeb.example.nhom13.Entity.User;
+import BuldingWeb.example.nhom13.Entity.YeuCauDangTinTuc;
 import BuldingWeb.example.nhom13.Enums.VaiTro;
 import BuldingWeb.example.nhom13.Mapper.TintucMapper;
+import BuldingWeb.example.nhom13.Model.AgentNewsDTO;
 import BuldingWeb.example.nhom13.Model.TinTucDTO;
 import BuldingWeb.example.nhom13.Model.TinTucDetailDTO;
 import BuldingWeb.example.nhom13.Repository.TinTucRepository;
+import BuldingWeb.example.nhom13.Repository.YeuCauDangTinTucRepository;
 import BuldingWeb.example.nhom13.Service.TinTucService;
 import BuldingWeb.example.nhom13.Utils.TtNdUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,9 @@ public class TinTucServiceImpl implements TinTucService {
 
     @Autowired
     private TtNdUtil ttNdUtil;
+
+    @Autowired
+    private YeuCauDangTinTucRepository yeuCauDangTinTucRepository;
 
     @Override
     public List<TinTucDTO> getAllTt() {
@@ -57,5 +63,20 @@ public class TinTucServiceImpl implements TinTucService {
         TinTuc tinTuc = tinTucRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy tin tức với ID: " + id));
         tinTucRepository.delete(tinTuc);
+    }
+
+    @Override
+    public List<AgentNewsDTO> getMyNewsRequests() {
+        User currentUser = ttNdUtil.getCurrentAuthenticatedUser();
+
+        List<YeuCauDangTinTuc> myRequests = yeuCauDangTinTucRepository.findByUserGuiYeuCau(
+                currentUser,
+                Sort.by(Sort.Direction.DESC, "ngayTaoYeuCauTt")
+        );
+
+        // 3. Map sang DTO
+        return myRequests.stream()
+                .map(tinTucMapper::toAgentNewsDTO)
+                .collect(Collectors.toList());
     }
 }

@@ -72,9 +72,7 @@ public class YeuCauDtServiceImpl implements YeuCauDtService {
     public chitietYcDtReponse getYeuCauDtById(Integer idYeuCauDt) {
         YeuCauDangTin yeuCau = yeuCauDtRepository.findById(idYeuCauDt)
                 .orElseThrow(() -> new RuntimeException("khong tim thay"));
-        if (yeuCau.getTrangThaiYeuCau() != TrangThaiYeuCau.CHO_DUYET) {
-            throw new RuntimeException("Yeu cau da duoc xu ly");
-        }
+
         return yeuCauMapper.convertTochitietDTO(yeuCau);
     }
 }

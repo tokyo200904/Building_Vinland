@@ -5,6 +5,7 @@ import BuldingWeb.example.nhom13.Entity.User;
 import BuldingWeb.example.nhom13.Entity.YeuCauDangTinTuc;
 import BuldingWeb.example.nhom13.Enums.TrangThaiTinTuc;
 import BuldingWeb.example.nhom13.Enums.TrangThaiYeuCauTinTuc;
+import BuldingWeb.example.nhom13.Model.AgentNewsDTO;
 import BuldingWeb.example.nhom13.Model.Reponse.DetailTtReponse;
 import BuldingWeb.example.nhom13.Model.Reponse.dangTinTucReponse;
 import BuldingWeb.example.nhom13.Model.TinTucDTO;
@@ -113,6 +114,17 @@ public class TintucMapper {
                 .ngayXuatBan(tinTuc.getNgayXuatBan())
                 .trangThai(tinTuc.getTrangThai())
                 .luotXem(tinTuc.getLuotXem())
+                .build();
+    }
+
+    public AgentNewsDTO toAgentNewsDTO(YeuCauDangTinTuc entity) {
+        return AgentNewsDTO.builder()
+                .maYeuCauTt(entity.getMaYeuCauTt())
+                .tieuDe(entity.getTieuDe())
+                .anhDaiDien(entity.getAnhDaiDien())
+                .ngayTao(entity.getNgayTaoYeuCauTt())
+                .trangThai(entity.getTrangThaiYeuCauTt())
+                .lyDoTuChoi(entity.getLoiNhanTuChoi())
                 .build();
     }
 }

@@ -3,6 +3,7 @@ package BuldingWeb.example.nhom13.Model.Reponse;
 import BuldingWeb.example.nhom13.Enums.LoaiBDS;
 import BuldingWeb.example.nhom13.Enums.NoiThat;
 import BuldingWeb.example.nhom13.Enums.TrangThaiBDS;
+import BuldingWeb.example.nhom13.Enums.TrangThaiYeuCau;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -45,4 +46,7 @@ public class chitietYcDtReponse {
 
     private String anhChinh;
     private List<String> anhPhu;
+    private String lyDoTuChoi;
+    private TrangThaiYeuCau trangThai;
+
 }
