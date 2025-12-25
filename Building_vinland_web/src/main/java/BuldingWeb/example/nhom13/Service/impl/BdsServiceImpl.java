@@ -12,8 +12,10 @@ import BuldingWeb.example.nhom13.Service.BdsService;
 import BuldingWeb.example.nhom13.Utils.UploadUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.util.List;
@@ -84,8 +86,11 @@ public class BdsServiceImpl implements BdsService {
     public editbdsReponse updateBds(int maBds, editbdsReponse DTO) {
         BatDongSan batDongSan = bdsRepository.findBdsBymaBds(maBds);
         if (batDongSan == null) {
-            throw new RuntimeException("khoong tim thay bds");}
-
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,
+                    "Không tìm thấy BĐS với id = " + maBds
+            );
+        }
         modelMapper.typeMap(editbdsReponse.class, BatDongSan.class)
                 .addMappings(mapper -> mapper.skip(BatDongSan::setMaBds))
                 .addMappings(mapper -> mapper.skip(BatDongSan::setAnhChinh));

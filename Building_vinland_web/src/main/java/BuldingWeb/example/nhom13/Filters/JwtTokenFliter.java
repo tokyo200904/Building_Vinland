@@ -59,15 +59,22 @@ public class JwtTokenFliter extends OncePerRequestFilter {
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                 }
             }
-            filterChain.doFilter(request, response);
-
+        } catch (io.jsonwebtoken.JwtException | org.springframework.security.core.AuthenticationException e) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+            return;
         } catch (Exception e) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+            return;
         }
+            filterChain.doFilter(request, response);
+
     }
 
     private boolean isBypassToken(@NonNull HttpServletRequest request) {
         String servletPath = request.getServletPath();
+        if (servletPath.equals("/error")) {
+            return true;
+        }
         if (servletPath.startsWith("/upload/")) {
             return true;
         }

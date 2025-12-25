@@ -58,7 +58,7 @@ public class WebSecurityConfig {
 
                             )
                             .permitAll()
-
+                            .requestMatchers("/error").permitAll()
                             .requestMatchers(HttpMethod.GET, String.format("/%s/admin/tintuc/duyettin/tintucs", apiPrefix))
                             .hasAnyRole("ADMIN", "NHANVIEN")
 
